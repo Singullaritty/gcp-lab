@@ -8,7 +8,6 @@ resource "google_compute_firewall" "allow-http" {
   }
   
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["http"] 
 }
 
 # HTTPS port 443
@@ -21,7 +20,6 @@ resource "google_compute_firewall" "allow-https" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["https"] 
 }
 
 # SSH port 22
@@ -34,5 +32,4 @@ resource "google_compute_firewall" "allow-ssh" {
   }
 
   source_ranges = ["0.0.0.0/0"]
-  target_tags = ["ssh"]
 }

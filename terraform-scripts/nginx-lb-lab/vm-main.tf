@@ -24,4 +24,9 @@ resource "google_compute_instance" "nginx_vm" {
      }
    }
 
+  timeouts {
+    create = "1h30m"
+    update = "2h"
+    delete = "20m"
+  }
 }
