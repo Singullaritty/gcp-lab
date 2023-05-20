@@ -1,3 +1,9 @@
+data "template_file" "nginx" {
+
+  template = "${file("${path.module}/template/install_nginx.tpl")}"
+  
+}
+
 # Creating gcloud compute VM
 resource "google_compute_instance" "nginx_vm" {
   
@@ -23,6 +29,8 @@ resource "google_compute_instance" "nginx_vm" {
        # To get external access
      }
    }
+
+  metadata_startup_script = data.template_file.nginx.rendered
 
   timeouts {
     create = "1h30m"
