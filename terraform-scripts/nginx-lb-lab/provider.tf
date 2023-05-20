@@ -1,5 +1,6 @@
 # google provider
 provider "google" {
-  project = "clgcporg8-067"
-  region  = "us-central1"
+  project = var.gcp_project
+  region  = var.gcp_region
+  zone    = var.gcp_zone
 }

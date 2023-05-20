@@ -1,14 +1,15 @@
 # Creating gcloud compute VM
-resource "google_compute_instance" "test_vm" {
-  name = "ubuntu-test-vm"
-  machine_type = var.vm-instance-type
-  zone = "us-central1-a"
+resource "google_compute_instance" "nginx_vm" {
+  name = "nginx-lb"
+  machine_type = var.vm_spec["instance_type"]
+  zone = var.gcp_zone
+  tags = ["nginx"]
 
   boot_disk {
     initialize_params {
-        image = "debian-11-bullseye-v20230509"
-        type  = "pd-standard"
-        size  = "10"
+        image = var.vm_spec["boot_disk_image"]
+        type  = var.vm_spec["boot_disk_type"]
+        size  = var.vm_spec["boot_disk_size"]
     }
   }
 
