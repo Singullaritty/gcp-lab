@@ -17,6 +17,12 @@ http {
 
     include mime.types;
 
+    # log_format forward_log '$http_x_real_ip - $remote_user [$time_local]  '
+    #                       '*$request" $status $body_bytes_sent '
+    #                       '*$http_referer" "$http_user_agent"  $remote_addr';
+
+    # access_log /var/log/nginx/log_client_proxy.log forward_log;
+
     server {
 
        listen 80;
@@ -25,10 +31,10 @@ http {
 
        index info.php;
 
-    #    location ~\.php {
-    #             include fastcgi.conf;
-    #             fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-    #    }
+       location ~\.php {
+                 include fastcgi.conf;
+                 fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        }
    }
 }
 EOF
