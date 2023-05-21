@@ -7,7 +7,7 @@ apt install -y nginx
 apt install -y php-fpm
 
 cat > "/etc/nginx/nginx.conf" <<EOF
-user apache;
+user www-data;
 worker_processes auto;
 events {
 worker_connections 1024;
@@ -23,17 +23,12 @@ http {
 
        root /website_template/;
 
-       index index.php index.html;
+       index info.php;
 
-       location /{
-                try_files $uri $uri/ =404;
-       }
-
-       location ~\.php$ {
-                include fastcgi.conf;
-                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-       }
-
+    #    location ~\.php {
+    #             include fastcgi.conf;
+    #             fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+    #    }
    }
 }
 EOF

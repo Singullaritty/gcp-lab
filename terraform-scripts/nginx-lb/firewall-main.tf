@@ -4,7 +4,7 @@ resource "google_compute_firewall" "allow-http" {
   network = google_compute_network.vpc.name
   allow {
     protocol = "tcp"
-    ports    = ["80"]
+    ports    = ["80", "8080"]
   }
   
   source_ranges = ["0.0.0.0/0"]
@@ -16,7 +16,7 @@ resource "google_compute_firewall" "allow-https" {
   network = google_compute_network.vpc.name
   allow {
     protocol = "tcp"
-    ports    = ["443"]
+    ports    = ["443", "8443"]
   }
 
   source_ranges = ["0.0.0.0/0"]
